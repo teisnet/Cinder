@@ -69,6 +69,9 @@ std::wstring toUtf16( const std::string &utf8 );
 //! Returns a utf-8 encoded std::string by converting the utf-16 encoded string \a utf16
 std::string toUtf8( const std::wstring &utf16 );
 
+// TEISNET
+std::string toUtf8( const wchar_t *utf16);
+
 //! Suspends the execution of the current thread until \a milliseconds have passed. Supports sub-millisecond precision only on Mac OS X.
 void sleep( float milliseconds );
 

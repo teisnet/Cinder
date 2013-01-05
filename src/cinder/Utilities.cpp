@@ -304,6 +304,30 @@ string toUtf8( const wstring &utf16 )
 #endif
 }
 
+// TEISNET
+string toUtf8( const wchar_t *utf16)
+{
+#if defined( CINDER_MSW )
+	int utf8Size = ::WideCharToMultiByte( CP_UTF8, 0, utf16, -1, NULL, 0, NULL, NULL );
+	if( utf8Size == 0 ) {
+		throw std::exception( "Error in UTF-16 to UTF-8 conversion." );
+	}
+
+	vector<char> resultString( utf8Size );
+
+	int convResult = ::WideCharToMultiByte( CP_UTF8, 0, utf16, -1, &resultString[0], utf8Size, NULL, NULL );
+
+	if( convResult != utf8Size ) {
+		throw std::exception( "Error in UTF-16 to UTF-8 conversion." );
+	}
+
+	return string( &resultString[0] );
+#else
+	NSString *utf16NS = [NSString stringWithCString:reinterpret_cast<const char*>( utf16 ) encoding:NSUTF16LittleEndianStringEncoding];
+	return string( [utf16NS cStringUsingEncoding:NSUTF8StringEncoding] );	
+#endif
+}
+
 void sleep( float milliseconds )
 {
 #if defined( CINDER_MSW )

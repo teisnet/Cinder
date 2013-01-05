@@ -327,6 +327,54 @@ Font::Glyph Font::getGlyphChar( char c ) const
 	return (Glyph)buffer[0];
 }
 
+/* TEISNET */
+Font::Glyph Font::getGlyphCharOld( char c ) const
+{
+	WORD buffer[1];
+	WCHAR theChar[1] = { (WCHAR)c };
+	::SelectObject( FontManager::instance()->getFontDc(), mObj->mHfont );
+	if( ::GetGlyphIndices( FontManager::instance()->getFontDc(), theChar, 1, buffer, GGI_MARK_NONEXISTING_GLYPHS ) == GDI_ERROR )
+		return 0;
+	
+	return (Glyph)buffer[0];
+}
+
+/* TEISNET */
+Font::Glyph Font::getGlyphChar( wchar_t c ) const
+{
+	WORD buffer[1];
+	WCHAR theChar[1] = { (WCHAR)c };
+	::SelectObject( FontManager::instance()->getFontDc(), mObj->mHfont );
+	if( ::GetGlyphIndicesW( FontManager::instance()->getFontDc(), theChar, 1, buffer, GGI_MARK_NONEXISTING_GLYPHS ) == GDI_ERROR )
+		return 0;
+	
+	return (Glyph)buffer[0];
+}
+
+/* TEISNET */
+Font::Glyph Font::getGlyphCharTest( const wchar_t c ) const
+{
+	WORD buffer[1];
+	//WCHAR theChar[1] = { (WCHAR)c };
+	::SelectObject( FontManager::instance()->getFontDc(), mObj->mHfont );
+	if( ::GetGlyphIndicesW( FontManager::instance()->getFontDc(), &c, 1, buffer, GGI_MARK_NONEXISTING_GLYPHS ) == GDI_ERROR )
+		return 0;
+	
+	return (Glyph)buffer[0];
+}
+
+/* TEISNET */
+Font::Glyph Font::getGlyphCharNew( uint16_t c ) const
+{
+	WORD buffer[1];
+	//WCHAR theChar[1] = { (WCHAR)c };
+	::SelectObject( FontManager::instance()->getFontDc(), mObj->mHfont );
+	if( ::GetGlyphIndicesW( FontManager::instance()->getFontDc(), (LPCWSTR)&c, 1, buffer, GGI_MARK_NONEXISTING_GLYPHS ) == GDI_ERROR )
+		return 0;
+	
+	return (Glyph)buffer[0];
+}
+
 Font::Glyph Font::getGlyphIndex( size_t idx ) const
 {
 	size_t ct = 0;
