@@ -215,11 +215,12 @@ void FrustumCullingReduxApp::draw()
 	// apply material and setup light
 	mMaterial.apply();
 
-	gl::Light light(GL_POINT, GL_LIGHT0);
+	gl::Light light( gl::Light::POINT, 0 );
 	light.setAmbient( Color::white() );
 	light.setDiffuse( Color::white() );
 	light.setSpecular( Color::white() );
 	light.enable();
+	light.update( mRenderCam );
 
 	// bind shader 
 	if(mShader) {

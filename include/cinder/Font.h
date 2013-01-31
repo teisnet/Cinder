@@ -71,7 +71,11 @@ class Font {
 	size_t					getNumGlyphs() const;
 
 	Glyph					getGlyphIndex( size_t idx ) const;
+	Glyph					getGlyphCharOld( char utf8Char ) const;
 	Glyph					getGlyphChar( char utf8Char ) const;
+	Glyph					getGlyphChar( wchar_t utf8Char ) const; // TEISNET
+	Glyph					getGlyphCharTest( const wchar_t utf8Char ) const; // TEISNET
+	Glyph					getGlyphCharNew( uint16_t c ) const; // TEISNET
 	std::vector<Glyph>		getGlyphs( const std::string &utf8String ) const;
 	//! Returns a cinder::Shape2d representing the shape of the glyph at \a glyphIndex
 	Shape2d					getGlyphShape( Glyph glyphIndex ) const;
