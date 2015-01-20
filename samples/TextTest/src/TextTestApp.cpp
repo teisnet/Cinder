@@ -1,3 +1,5 @@
+#pragma execution_character_set("utf-8")
+
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/Texture.h"
 #include "cinder/Text.h"
@@ -43,9 +45,19 @@ void TextTestApp::setup()
 	std::string differentFont( "Papyrus" );
 #endif
 
+	
+	std::string str = "語";
+	std::wstring wstr = L"語";
+	wchar_t chr = '語';
+	wchar_t wchr = L'語';
+
+	wchar_t chr0 = '\0';
+	chr0 = 'æ';
+
 	// Japanese
-	char japanese[] = { 0xE6, 0x97, 0xA5, 0xE6, 0x9C, 0xAC, 0xE8, 0xAA, 0x9E, 0 };
+	//char japanese[] = { 0xE6, 0x97, 0xA5, 0xE6, 0x9C, 0xAC, 0xE8, 0xAA, 0x9E, 0 };
 	// this does a complicated layout
+	std::string japanese = "日本語";
 	TextLayout layout;
 	layout.clear( ColorA( 0.2f, 0.2f, 0.2f, 0.2f ) );
 	layout.setFont( Font( normalFont, 24 ) );
